@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="logo"><img class="logoimg" src="img/Bexely 1.png"></div>
+        <nav class="menu">
+            <a href="#">FAQ</a>
+            <a href="#">Pricing</a>
+            <a href="#">About us</a>
+
+        </nav>
+       
+        <div>
+           
+            <a class="button red-button" href="login.html">Sign in</a>
+            <a class="button blue-button" href="register.html">Register</a>
+        </div>
+    </header>
+
+    <main>
+        <h2 style="
+        color: #FFF;
+font-family: Belanosima;
+font-size: 48px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+        font-family: Belanosima;
+font-size: 48px;
+font-style: normal;
+    font-size: xx-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-content: center;
+    gap: 20px;
+">Register to <img style="margin-top: 0%;" src="img/Bexely.png"> </h2>
+         <div id="slide-container" class="slide-container">
+            <div id="initial-slide" class="slide active">
+                <button class="google-button">Se connecter avec Google</button>
+                <h4>Or</h4>
+                <a id="email-btn" class="email-btn">Continue with Email ➝</a>
+            </div>
+
+            <div id="email-slide" class="slide in-right">
+                <input id="email-input" class="input-field" type="email" placeholder="Email">
+                <button id="email-continue-btn" class="continue-button">Continue ➝</button>
+            </div>
+        
+            <div id="password-slide" class="slide in-right">
+                <div class="input-container">
+                    <input id="password-input" class="input-field" type="password" placeholder="Password">
+
+                    <img src="img/eye-icon.png" id="toggle-password" class="icon" alt="Toggle password visibility">
+                </div>
+                <input id="password-input" class="input-field" type="password" placeholder="Verified password">
+                <button id="password-continue-btn" class="continue-button">Continue ➝</button>
+            </div>
+            
+        </div>
+    </main>
+    <script>
+        function slideTransition(oldSlideId, newSlideId) {
+            const oldSlide = document.getElementById(oldSlideId);
+            const newSlide = document.getElementById(newSlideId);
+
+            oldSlide.classList.add('out-left');
+            setTimeout(() => {
+                oldSlide.classList.remove('active', 'out-left');
+                newSlide.classList.add('active');
+                newSlide.classList.remove('in-right');
+            }, 1000); 
+        }
+
+        document.getElementById('email-btn').addEventListener('click', function() {
+            slideTransition('initial-slide', 'email-slide');
+        });
+
+        document.getElementById('email-continue-btn').addEventListener('click', function() {
+            const email = document.getElementById('email-input').value;
+            if (email) {
+                slideTransition('email-slide', 'password-slide');
+            } else {
+                alert('Please enter a valid email');
+            }
+        });
+        const togglePassword = document.querySelector('#toggle-password');
+        const passwordInput = document.querySelector('#password-input');
+
+        togglePassword.addEventListener('click', function (e) {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+</body>
+</html>
